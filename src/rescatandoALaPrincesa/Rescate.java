@@ -14,19 +14,4 @@ public class Rescate {
 	public Rescate(String path) {
 		this.path = path;
 	}
-
-	public void cargarDatos() {
-		try {
-			Scanner sc = new Scanner(new File(this.path+".in"));
-			this.cantClaros = sc.nextInt();
-			this.cantSenderos = sc.nextInt();
-			this.cantDragones = sc.nextInt();
-			matriz = new MatrizAdyacencia(this.cantClaros);
-			matriz.agregarPeso(sc.nextInt(), sc.nextInt(), 50);
-			matriz.agregarPeso(sc.nextInt(), sc.nextInt(), 60);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-	}
 }

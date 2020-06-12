@@ -1,5 +1,7 @@
 package rescatandoALaPrincesa;
 
+import java.util.Arrays;
+
 public class MatrizAdyacencia {
 	private int[][] matriz;
 	private int ordenMatriz;
@@ -32,5 +34,16 @@ public class MatrizAdyacencia {
 		return ordenMatriz;
 	}
 	
+	public void mostrarMatriz() {
+		for(int i=0; i<this.ordenMatriz; i++) {
+			for(int j=0; j<this.ordenMatriz; j++)
+				System.out.print(matriz[i][j]+" ");
+			System.out.println();
+		}
+	}
 	
+	@Override
+	public String toString() {
+		return "MatrizAdyacencia [matriz=" + Arrays.toString(matriz) + "]";
+	}
 }

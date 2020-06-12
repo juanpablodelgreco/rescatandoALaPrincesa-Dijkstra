@@ -1,12 +1,15 @@
 package rescatandoALaPrincesa;
 
-public class Nodo {
+public class Nodo implements Comparable <Nodo>{
+	private int id;
 	private int costo;
+	private boolean visitado;
+	private int previo;
 	private boolean hayDragon;
 	
-	public Nodo(int costo, boolean hayDragon) {
+	public Nodo(int id, int costo) {
+		this.id = id;
 		this.costo = costo;
-		this.hayDragon = hayDragon;
 	}
 
 	public int getCosto() {
@@ -15,6 +18,11 @@ public class Nodo {
 
 	public boolean isHayDragon() {
 		return hayDragon;
+	}
+
+	@Override
+	public int compareTo(Nodo n2) {
+		return Integer.compare(this.costo, n2.costo);
 	}
 	
 }
