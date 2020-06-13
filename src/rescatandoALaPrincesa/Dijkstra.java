@@ -16,32 +16,38 @@ public class Dijkstra {
 	}
 	
 	public void resolucion() {
+		int costoNuevo;
 		Nodo w;
 		vs = new PriorityQueue<Nodo>();
 		Nodo nodoInicial = new Nodo(grafo.getClaroPrincesa(), 0);
 		vs.add(nodoInicial);
-		for(int i = 0 ; i<grafo.getCantClaros(); i++) {
-			if(i != nodoInicial.getNumNodo())
+		for (int i = 0; i < grafo.getCantClaros(); i++) {
+			if (i != nodoInicial.getNumNodo())
 				vs.add(new Nodo(i, 999));
 		}
-		
+		System.out.println("Primera->" + vs);
 		while (!vs.isEmpty()) {
+			System.out.println("-------------");
+			System.out.println(vs);
 			w = vs.poll();
 			s.put(w.getNumNodo(), w);
 			for (Nodo nv : vs) {
-				if (!s.containsKey(nv.getNumNodo()) && nv.getCosto() > (w.getCosto() + grafo.getMatriz().getPeso(w.getNumNodo(),  nv.getNumNodo()))) {
+				costoNuevo = (w.getCosto() + grafo.getMatriz().getPeso(w.getNumNodo(), nv.getNumNodo()));
+				if (!s.containsKey(nv.getNumNodo()) && nv.getCosto() > costoNuevo) {
 					nv.setCosto(w.getCosto() + grafo.getMatriz().getPeso(w.getNumNodo(), nv.getNumNodo()));
 					nv.setPredecesor(w.getNumNodo());
 				}
-				System.out.println(vs.size());
-			
+				System.out.println(nv.getNumNodo() + " " + nv.getCosto() + " " + costoNuevo + " " + nv.getCosto());
 			}
+
+			System.out.println("-------------");
 		}
-}
+
+	}
 
 	@Override
 	public String toString() {
-		return s+" ";
+		return "Dijkstra [vs=" + vs + "]";
 	}
 	
 }

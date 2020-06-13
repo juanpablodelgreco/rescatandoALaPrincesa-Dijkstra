@@ -28,14 +28,11 @@ public class Nodo implements Comparable <Nodo>{
 	
 	@Override
 	public int compareTo(Nodo n2) {
-		return this.costo - n2.costo;
+		return (this.getCosto() - n2.getCosto());
 	}
 
 	@Override
 	public String toString() {
 		return "[numNodo=" + (numNodo+1) + ", costo=" + costo + ", predecesor=" + (predecesor+1) + "]";
 	}
-
-	
-	
 }
