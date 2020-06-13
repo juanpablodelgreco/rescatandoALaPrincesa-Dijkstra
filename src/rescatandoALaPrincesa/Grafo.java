@@ -25,7 +25,7 @@ public class Grafo {
 	
 	public void cargarDatos() {
 		try {
-			Scanner sc = new Scanner(new File(this.path+".in"));
+			Scanner sc = new Scanner(new File("lote_de_pruebas/Input/"+this.path+".in"));
 			int arista1, arista2, costo;
 
 			this.cantClaros = sc.nextInt();

@@ -67,7 +67,7 @@ public class Dijkstra {
 		try {
 			int posible;
 			String estado=" ";
-			PrintWriter pw = new PrintWriter(new File(path+".out"));
+			PrintWriter pw = new PrintWriter(new File("lote_de_pruebas/Output/"+path+".out"));
 			posible = isCaminoPosible();
 			if(posible == -1)
 				estado = "Interceptado";
@@ -80,6 +80,7 @@ public class Dijkstra {
 					pw.print(p+" ");
 			}
 			pw.close();
+			System.out.println("Resultados guardados con exito!");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
