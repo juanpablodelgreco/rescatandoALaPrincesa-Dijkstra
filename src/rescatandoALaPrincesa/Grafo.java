@@ -32,8 +32,8 @@ public class Grafo {
 			this.cantSenderos = sc.nextInt();
 			this.cantDragones = sc.nextInt();
 			matriz = new MatrizAdyacencia(this.cantClaros);
-			this.claroPrincesa = sc.nextInt();
-			this.claroPrincipe = sc.nextInt();
+			this.claroPrincesa = sc.nextInt()-1;
+			this.claroPrincipe = sc.nextInt()-1;
 			for(int i=0; i<this.cantDragones; i++) 
 				posDragones.add(sc.nextInt());
 			for(int j = 0; j<this.cantSenderos; j++) {
@@ -41,7 +41,7 @@ public class Grafo {
 				arista2 = sc.nextInt()-1;
 				costo = sc.nextInt();
 					matriz.agregarPeso(arista1, arista2, costo);
-					matriz.agregarPeso(arista2, arista1, costo);		
+					//matriz.agregarPeso(arista2, arista1, costo);		
 			}
 		} catch (FileNotFoundException e) {
 	

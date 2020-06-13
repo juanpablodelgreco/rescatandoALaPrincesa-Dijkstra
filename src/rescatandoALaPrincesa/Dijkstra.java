@@ -1,37 +1,47 @@
 package rescatandoALaPrincesa;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
-	private PriorityQueue<Nodo> colaPrioridad;
+	private PriorityQueue<Nodo> vs;
 	private Grafo grafo;
-	private boolean[] visitados;
+	private Map<Integer,Nodo> s = new HashMap<Integer,Nodo>();
 	
 	public Dijkstra(String path) {
 		grafo = new Grafo(path);
-		this.visitados = new boolean[grafo.getCantClaros()];
 	}
 	
 	public void resolucion() {
-		Nodo n;
-		colaPrioridad = new PriorityQueue<Nodo>();
+		Nodo w;
+		vs = new PriorityQueue<Nodo>();
 		Nodo nodoInicial = new Nodo(grafo.getClaroPrincesa(), 0);
-		colaPrioridad.add(nodoInicial);
+		vs.add(nodoInicial);
 		for(int i = 0 ; i<grafo.getCantClaros(); i++) {
 			if(i != nodoInicial.getNumNodo())
-				colaPrioridad.add(new Nodo(i, 999));
+				vs.add(new Nodo(i, 999));
 		}
-		while(!colaPrioridad.isEmpty()) {
-			n = colaPrioridad.poll();
-		this.visitados[n.getNumNodo()] = true;
-		for(int j=0; j<grafo.getCantClaros(); j++) {
-			if(grafo.getMatriz()[n.getNumNodo()][j])
+		
+		while (!vs.isEmpty()) {
+			w = vs.poll();
+			s.put(w.getNumNodo(), w);
+			for (Nodo nv : vs) {
+				if (!s.containsKey(nv.getNumNodo()) && nv.getCosto() > (w.getCosto() + grafo.getMatriz().getPeso(w.getNumNodo(),  nv.getNumNodo()))) {
+					nv.setCosto(w.getCosto() + grafo.getMatriz().getPeso(w.getNumNodo(), nv.getNumNodo()));
+					nv.setPredecesor(w.getNumNodo());
+				}
+				System.out.println(vs.size());
+			
+			}
 		}
-	}
 }
 
 	@Override
 	public String toString() {
-		return "Dijkstra [colaPrioridad=" + colaPrioridad + "]";
+		return s+" ";
 	}
+	
 }
