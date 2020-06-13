@@ -28,7 +28,11 @@ public class Nodo implements Comparable <Nodo>{
 	
 	@Override
 	public int compareTo(Nodo n2) {
-		return (this.getCosto() - n2.getCosto());
+		if(this.costo > n2.getCosto())
+			return 1;
+		else if(this.costo < n2.getCosto())
+			return -1;
+		else return 0;
 	}
 
 	@Override

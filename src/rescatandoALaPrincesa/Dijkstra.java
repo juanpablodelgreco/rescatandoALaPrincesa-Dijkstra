@@ -27,9 +27,8 @@ public class Dijkstra {
 		}
 		System.out.println("Primera->" + vs);
 		while (!vs.isEmpty()) {
-			System.out.println("-------------");
-			System.out.println(vs);
-			w = vs.poll();
+			//System.out.println("-------------");
+			w = vs.peek();
 			s.put(w.getNumNodo(), w);
 			for (Nodo nv : vs) {
 				costoNuevo = (w.getCosto() + grafo.getMatriz().getPeso(w.getNumNodo(), nv.getNumNodo()));
@@ -37,17 +36,19 @@ public class Dijkstra {
 					nv.setCosto(w.getCosto() + grafo.getMatriz().getPeso(w.getNumNodo(), nv.getNumNodo()));
 					nv.setPredecesor(w.getNumNodo());
 				}
-				System.out.println(nv.getNumNodo() + " " + nv.getCosto() + " " + costoNuevo + " " + nv.getCosto());
+				//System.out.println(nv.getNumNodo() + " " + nv.getCosto() + " " + costoNuevo + " " + nv.getCosto());
 			}
-
-			System.out.println("-------------");
+			vs.remove(w);
+			//System.out.println(vs);
+			//System.out.println("-------------");
 		}
+		System.out.println(s);
 
 	}
 
 	@Override
 	public String toString() {
-		return "Dijkstra [vs=" + vs + "]";
+		return "Dijkstra [vs=" + vs + ", s=" + s + "]";
 	}
 	
 }
