@@ -1,28 +1,35 @@
 package rescatandoALaPrincesa;
 
 public class Nodo implements Comparable <Nodo>{
-	private int id;
+	private int numNodo;
 	private int costo;
+	private int predecesor;
 	private boolean visitado;
-	private int previo;
-	private boolean hayDragon;
 	
-	public Nodo(int id, int costo) {
-		this.id = id;
+	public Nodo(int numNodo, int costo) {
+		this.numNodo = numNodo;
 		this.costo = costo;
+		this.visitado = false;
 	}
 
 	public int getCosto() {
 		return costo;
 	}
+	
+	public int getNumNodo() {
+		return numNodo;
+	}
 
-	public boolean isHayDragon() {
-		return hayDragon;
+	public boolean isVisitado() {
+		return visitado;
+	}
+
+	public void setVisitado(boolean visitado) {
+		this.visitado = visitado;
 	}
 
 	@Override
 	public int compareTo(Nodo n2) {
-		return Integer.compare(this.costo, n2.costo);
+		return this.costo - n2.costo;
 	}
-	
 }

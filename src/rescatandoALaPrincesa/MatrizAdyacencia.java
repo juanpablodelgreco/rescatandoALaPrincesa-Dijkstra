@@ -9,12 +9,17 @@ public class MatrizAdyacencia {
 	public MatrizAdyacencia(int ordenMatriz){
 		this.ordenMatriz = ordenMatriz;
 		matriz = new int[ordenMatriz][ordenMatriz];
+		inicializarMatriz();
 	}
 	
 	public void inicializarMatriz() {
 		for(int i=0; i<this.ordenMatriz; i++) {
-			for(int j=0; j<this.ordenMatriz; j++)
-				matriz[i][j] = 999;
+			for(int j=0; j<this.ordenMatriz; j++) {
+				if(i==j) 
+					matriz[i][j] = 0;
+				else matriz[i][j] = 999;
+			}
+				
 		}
 	}
 
@@ -37,7 +42,7 @@ public class MatrizAdyacencia {
 	public void mostrarMatriz() {
 		for(int i=0; i<this.ordenMatriz; i++) {
 			for(int j=0; j<this.ordenMatriz; j++)
-				System.out.print(matriz[i][j]+" ");
+				System.out.print(matriz[i][j]+"| ");
 			System.out.println();
 		}
 	}
