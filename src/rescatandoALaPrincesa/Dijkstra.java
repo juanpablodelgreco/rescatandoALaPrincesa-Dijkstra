@@ -1,5 +1,8 @@
 package rescatandoALaPrincesa;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +14,10 @@ public class Dijkstra {
 	private Grafo grafo;
 	private Map<Integer,Nodo> s = new HashMap<Integer,Nodo>();
 	private List<Integer> precesores = new ArrayList<Integer>();
+	private String path;
 	
 	public Dijkstra(String path) {
+		this.path = path;
 		grafo = new Grafo(path);
 	}
 	
@@ -43,8 +48,41 @@ public class Dijkstra {
 //			System.out.println(vs);
 		}
 		guardarPrecesores();
-		verificarEstadoDelCamino();
-		System.out.println(precesores);
+		guardarResultado();
+		//System.out.println(precesores);
+	}
+	
+	
+	private int isCaminoPosible() {
+		for(int p:precesores) {
+			if(grafo.isDragon(p))
+				return -1;
+		}
+		if(precesores.size() == 1)
+			return -2;
+		return 0;
+	}
+	
+	private void guardarResultado() {
+		try {
+			int posible;
+			String estado=" ";
+			PrintWriter pw = new PrintWriter(new File(path+".out"));
+			posible = isCaminoPosible();
+			if(posible == -1)
+				estado = "Interceptado";
+			else if(posible == -2)
+				estado = "No hay camino posible";
+			if(posible == -1 || posible == -2) {
+				pw.print(estado);
+			}else {
+				for(Integer p:precesores)
+					pw.print(p+" ");
+			}
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void guardarPrecesores() {

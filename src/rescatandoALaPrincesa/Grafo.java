@@ -55,6 +55,13 @@ public class Grafo {
 	}
 
 	
+	public boolean isDragon(int i) {
+		for(Integer pd:posDragones)
+				if(pd == i)
+					return true;
+		return false;
+	}
+	
 	public int getCantClaros() {
 		return cantClaros;
 	}
