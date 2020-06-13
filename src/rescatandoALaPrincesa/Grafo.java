@@ -41,7 +41,7 @@ public class Grafo {
 				arista2 = sc.nextInt()-1;
 				costo = sc.nextInt();
 					matriz.agregarPeso(arista1, arista2, costo);
-					//matriz.agregarPeso(arista2, arista1, costo);		
+					matriz.agregarPeso(arista2, arista1, costo);		
 			}
 		} catch (FileNotFoundException e) {
 	
@@ -54,11 +54,18 @@ public class Grafo {
 		return matriz;
 	}
 
+	
 	public int getCantClaros() {
 		return cantClaros;
 	}
 
 	public int getClaroPrincesa() {
 		return claroPrincesa;
+	}
+
+	public int getClaroPrincipe() {
+		return claroPrincipe;
 	}	
+	
+	
 }

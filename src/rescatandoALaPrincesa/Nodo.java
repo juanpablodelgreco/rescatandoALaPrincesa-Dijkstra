@@ -26,6 +26,10 @@ public class Nodo implements Comparable <Nodo>{
 		this.predecesor = predecesor;
 	}
 	
+	public int getPredecesor() {
+		return predecesor;
+	}
+
 	@Override
 	public int compareTo(Nodo n2) {
 		if(this.costo > n2.getCosto())
