@@ -9,8 +9,11 @@ public class Grafo {
 		private Integer[][] matriz;
 		private Integer[] predecesores;
 		private int nodoInicial;
+		private int cantNodos;
 		
 		public Grafo(List<Arista> aristas, int cantidadNodos) {
+			this.cantNodos = cantidadNodos;
+			matriz = new Integer[this.cantNodos][this.cantNodos];
 			for(Arista a:aristas) {
 				matriz[a.getDesde()][a.getHasta()] = a.getPeso();
 				matriz[a.getHasta()][a.getDesde()] = a.getPeso();
@@ -20,9 +23,9 @@ public class Grafo {
 		public Integer[] dijkstra(int nodoInicial) {
 			int nodoActual, distanciaAristaActual;
 			Integer proximoNodo;
-			Integer[] distancias = new Integer[matriz.length];
+			Integer[] distancias = new Integer[this.cantNodos];
 			this.nodoInicial = nodoInicial;
-			predecesores = new Integer[matriz.length];
+			predecesores = new Integer[this.cantNodos];
 			distancias[nodoInicial] = 0;
 
 			Set<Integer> noVisitados = new HashSet<Integer>();
@@ -60,5 +63,16 @@ public class Grafo {
 					adyacentes.add(i);
 			}
 			return adyacentes;
+		}
+		
+		public List<Integer> getCamino(int nodoHasta){
+			int i=nodoHasta;
+			List<Integer> camino = new ArrayList<Integer>();
+			camino.add(i);
+			while(i != nodoInicial) {
+				i = predecesores[i];
+				camino.add(i);
+			}
+			return camino;
 		}
 }
